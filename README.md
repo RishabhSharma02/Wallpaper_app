@@ -1,4 +1,4 @@
-# flutter_application_2
+# Wallix-Wallpaper App
 
 A new Flutter project.
 
