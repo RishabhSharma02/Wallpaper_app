@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/homepage.dart';
+import 'package:flutter_application_2/provider/favorite_provider.dart';
+import 'package:provider/provider.dart';
 
 class setter extends StatefulWidget {
   final String imgurl;
@@ -10,13 +12,19 @@ class setter extends StatefulWidget {
 }
 
 class _setterState extends State<setter> {
+  List<String> img = [];
+  int k = 0;
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<FavoriteProvider>(context);
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.photo, color: Color.fromARGB(255, 0, 255, 204)),
-        backgroundColor: Color.fromARGB(255, 10, 43, 154),
-        onPressed: () {},
+        child: provider.isExist(widget.imgurl)
+            ? const Icon(Icons.favorite, color: Colors.red)
+            : const Icon(Icons.favorite_border),
+        onPressed: () {
+          provider.toggleFavorite(widget.imgurl);
+        },
       ),
       body: Hero(
         tag: HomePage,
